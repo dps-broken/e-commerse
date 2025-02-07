@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ModernShop - Products</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .category-nav {
+        background: #f8f9fa;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .product-card {
+        transition: transform 0.3s;
+        height: 100%;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .product-image {
+        height: 200px;
+        object-fit: contain;
+        padding: 1rem;
+      }
+      .filters {
+        background: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      #cartBadge {
+        position: relative;
+        top: -8px;
+        right: 5px;
+      }
+      .footer {
+        background: #212529;
+        color: #fff;
+        padding: 4rem 0 2rem;
+      }
+      .footer-title {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #fff;
+      }
+      .footer-text {
+        color: #adb5bd;
+        line-height: 1.6;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+      .footer-links a {
+        color: #adb5bd;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      .social-icons {
+        margin-top: 1.5rem;
+      }
+      .social-icons a {
+        color: #adb5bd;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        transition: color 0.3s;
+      }
+      .social-icons a:hover {
+        color: #fff;
+      }
+      .newsletter-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+      .newsletter-input::placeholder {
+        color: #adb5bd;
+      }
+      .newsletter-btn {
+        background: #0d6efd;
+        border: none;
+        color: #fff;
+      }
+      .newsletter-btn:hover {
+        background: #0b5ed7;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">ModernShop</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="./cart.html"
+                data-bs-toggle="modal"
+                data-bs-target="#cartModal"
+              >
+                <i class="bi bi-cart"></i> Cart
+                <span id="cartBadge" class="badge bg-danger">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Shopping Cart</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="cartItems">
+              <!-- Cart items will be displayed here -->
+            </div>
+            <div class="text-end mt-3">
+              <h5>Total: $<span id="cartTotal">0.00</span></h5>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="checkoutBtn">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex flex-wrap gap-2">
+              <button
+                class="btn btn-outline-primary category-btn"
+                data-category="all"
+              >
+                All Products
+              </button>
+              <button
+                class="btn btn-outline-primary category-btn"
+                data-category="electronics"
+              >
+                Electronics
+              </button>
+              <button
+                class="btn btn-outline-primary category-btn"
+                data-category="jewelery"
+              >
+                Jewelry
+              </button>
+              <button
+                class="btn btn-outline-primary category-btn"
+                data-category="men's clothing"
+              >
+                Men's Clothing
+              </button>
+              <button
+                class="btn btn-outline-primary category-btn"
+                data-category="women's clothing"
+              >
+                Women's Clothing
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Filters Sidebar -->
+          <div class="col-lg-3 mb-4">
+            <div class="filters">
+              <h4>Filters</h4>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">Price Range</label>
+                <input
+                  type="range"
+                  class="form-range"
+                  id="priceRange"
+                  min="0"
+                  max="1000"
+                />
+                <div class="d-flex justify-content-between">
+                  <span>$0</span>
+                  <span id="priceValue">$500</span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Sort By</label>
+                <select class="form-select" id="sortSelect">
+                  <option value="default">Default</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="name">Name</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="col-lg-9">
+            <div class="row g-4" id="productsList">
+              <!-- Products will be dynamically loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5 class="footer-title">ModernShop</h5>
+            <p class="footer-text">
+              Your premier destination for modern, high-quality products at
+              competitive prices.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li>
+                <a href="#"><i class="fas fa-angle-right me-2"></i>About Us</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-angle-right me-2"></i>Contact</a>
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-angle-right me-2"></i>Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-angle-right me-2"></i>Terms & Conditions</a
+                >
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-angle-right me-2"></i>FAQs</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h5 class="footer-title">Newsletter</h5>
+            <p class="footer-text">
+              Subscribe to our newsletter for updates and exclusive offers.
+            </p>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control newsletter-input"
+                placeholder="Enter your email"
+              />
+              <button class="btn btn-primary newsletter-btn">Subscribe</button>
+            </div>
+            <p class="footer-text small">
+              By subscribing, you agree to our Privacy Policy
+            </p>
+          </div>
+        </div>
+        <hr class="mt-4 mb-4" style="border-color: #333" />
+        <div class="text-center footer-text">
+          <p>&copy; 2025 ModernShop. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let allProducts = [];
+      let cart = [];
+
+      // Fetch products from Fake Store API
+      async function fetchProducts() {
+        try {
+          const response = await fetch("https://fakestoreapi.com/products");
+          allProducts = await response.json();
+          displayProducts(allProducts);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      }
+
+      // Display products in the products section
+      function displayProducts(products) {
+        const productsContainer = document.getElementById("productsList");
+        productsContainer.innerHTML = "";
+
+        products.forEach((product) => {
+          const productCard = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card product-card">
+                            <img src="${
+                              product.image
+                            }" class="product-image card-img-top" alt="${
+            product.title
+          }">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${product.title.substring(
+                                  0,
+                                  50
+                                )}...</h5>
+                                <p class="card-text text-muted">${product.description.substring(
+                                  0,
+                                  100
+                                )}...</p>
+                                <div class="mt-auto">
+                                    <p class="h5 mb-3">$${product.price}</p>
+                                    <button class="btn btn-primary w-100" onclick="addToCart(${
+                                      product.id
+                                    })">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+          productsContainer.innerHTML += productCard;
+        });
+      }
+
+      // Add to cart functionality
+      function addToCart(productId) {
+        const product = allProducts.find((p) => p.id === productId);
+        const existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+          });
+        }
+
+        updateCartBadge();
+        updateCartModal();
+      }
+
+      // Update cart badge
+      function updateCartBadge() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById("cartBadge").textContent = totalItems;
+      }
+
+      // Update cart modal
+      function updateCartModal() {
+        const cartItems = document.getElementById("cartItems");
+        cartItems.innerHTML = "";
+
+        cart.forEach((item) => {
+          cartItems.innerHTML += `
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="${item.image}" alt="${
+            item.title
+          }" style="width: 50px; height: 50px; object-fit: contain;">
+                        <div class="ms-3 flex-grow-1">
+                            <h6 class="mb-0">${item.title}</h6>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-secondary me-2" onclick="updateQuantity(${
+                                  item.id
+                                }, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="btn btn-sm btn-outline-secondary ms-2" onclick="updateQuantity(${
+                                  item.id
+                                }, 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            <p class="mb-0">$${(
+                              item.price * item.quantity
+                            ).toFixed(2)}</p>
+                            <button class="btn btn-sm btn-danger" onclick="removeFromCart(${
+                              item.id
+                            })">Remove</button>
+                        </div>
+                    </div>
+                `;
+        });
+
+        const total = cart.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        document.getElementById("cartTotal").textContent = total.toFixed(2);
+      }
+
+      // Update item quantity
+      function updateQuantity(productId, change) {
+        const item = cart.find((item) => item.id === productId);
+        if (item) {
+          item.quantity += change;
+          if (item.quantity <= 0) {
+            removeFromCart(productId);
+          } else {
+            updateCartBadge();
+            updateCartModal();
+          }
+        }
+      }
+
+      // Remove item from cart
+      function removeFromCart(productId) {
+        cart = cart.filter((item) => item.id !== productId);
+        updateCartBadge();
+        updateCartModal();
+      }
+
+      // Checkout functionality
+      document.getElementById("checkoutBtn").addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+        alert(
+          "Thank you for your purchase! Total: $" +
+            document.getElementById("cartTotal").textContent
+        );
+        cart = [];
+        updateCartBadge();
+        updateCartModal();
+        bootstrap.Modal.getInstance(
+          document.getElementById("cartModal")
+        ).hide();
+      });
+
+      // Filter products by category
+      document.querySelectorAll(".category-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const category = button.dataset.category;
+          const filteredProducts =
+            category === "all"
+              ? allProducts
+              : allProducts.filter((product) => product.category === category);
+          displayProducts(filteredProducts);
+        });
+      });
+
+      // Price range filter
+      const priceRange = document.getElementById("priceRange");
+      const priceValue = document.getElementById("priceValue");
+      priceRange.addEventListener("input", (e) => {
+        const maxPrice = e.target.value;
+        priceValue.textContent = `$${maxPrice}`;
+        const filteredProducts = allProducts.filter(
+          (product) => product.price <= maxPrice
+        );
+        displayProducts(filteredProducts);
+      });
+
+      // Sort products
+      document.getElementById("sortSelect").addEventListener("change", (e) => {
+        const sortValue = e.target.value;
+        let sortedProducts = [...allProducts];
+
+        switch (sortValue) {
+          case "price-low":
+            sortedProducts.sort((a, b) => a.price - b.price);
+            break;
+          case "price-high":
+            sortedProducts.sort((a, b) => b.price - a.price);
+            break;
+          case "name":
+            sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        }
+
+        displayProducts(sortedProducts);
+      });
+
+      // Load products when page loads
+      document.addEventListener("DOMContentLoaded", fetchProducts);
+    </script>
+  </body>
+</html>
