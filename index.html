@@ -9,27 +9,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         :root {
-            --primary-color: #4158d0;
-            --secondary-color: #200a1e;
-            --accent-color: #292c04;
+            --primary-color: #1a1a1a;
+            --secondary-color: #2d2d2d;
+            --accent-color: #4a4a4a;
             --text-light: #ffffff;
-            --text-dark: #2c3e50;
-            --bg-dark: #1a1a1a;
+            --text-dark: #333333;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
         }
 
         .product-card {
             transition: transform 0.3s;
             height: 100%;
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            color: var(--text-dark);
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(65, 88, 208, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            background: var(--primary-color) !important;
         }
 
         .navbar-brand {
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--text-light) !important;
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
         }
 
         .hero-section {
@@ -55,7 +71,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
+            background: url("https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
             opacity: 0.15;
             animation: zoomEffect 20s infinite alternate;
         }
@@ -73,7 +89,7 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             margin-bottom: 1.5rem;
         }
 
@@ -86,9 +102,9 @@
             padding: 1rem 2.5rem;
             font-size: 1.2rem;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(65, 88, 208, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s;
-            background: var(--primary-color);
+            background: var(--accent-color);
             color: var(--text-light);
             border: none;
         }
@@ -102,11 +118,11 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: var(--secondary-color);
+            background: var(--accent-color);
         }
 
         .footer {
-            background: var(--bg-dark);
+            background: var(--primary-color);
             color: var(--text-light);
             padding: 5rem 0 2rem;
         }
@@ -138,19 +154,21 @@
         }
 
         .footer-links a:hover {
-            color: var(--accent-color);
+            color: var(--text-light);
         }
 
         .newsletter-input {
             border-radius: 50px;
             padding: 0.75rem 1.5rem;
             border: none;
+            background: var(--secondary-color);
+            color: var(--text-light);
         }
 
         .newsletter-btn {
             border-radius: 50px;
             padding: 0.75rem 2rem;
-            background: var(--primary-color);
+            background: var(--accent-color);
             border: none;
         }
 
@@ -170,7 +188,7 @@
         }
 
         .social-icons a:hover {
-            color: var(--accent-color);
+            color: var(--text-light);
         }
 
         .ad-section {
@@ -181,6 +199,7 @@
             color: var(--text-light);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .ad-section::before {
@@ -190,8 +209,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
-            opacity: 0.2;
+            background: url("https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
+            opacity: 0.1;
             animation: slowPan 30s infinite alternate;
         }
 
@@ -208,6 +227,7 @@
             color: var(--text-light);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .sale-section::before {
@@ -217,8 +237,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
-            opacity: 0.2;
+            background: url("https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") center/cover;
+            opacity: 0.1;
             animation: slowZoom 30s infinite alternate;
         }
 
@@ -231,7 +251,7 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin: 2rem 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .sale-badge {
@@ -241,28 +261,28 @@
             font-weight: bold;
             display: inline-block;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.95);
             padding: 2rem;
             border-radius: 10px;
-            backdrop-filter: blur(10px);
             margin: 1rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s;
+            color: var(--text-dark);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 1);
         }
 
         .btn-primary {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         .btn-primary:hover {
@@ -270,16 +290,27 @@
             border-color: var(--secondary-color);
         }
 
+        .btn-outline-dark {
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
         .btn-outline-dark:hover {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .card {
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            color: var(--text-dark);
         }
     </style>
 </head>
 
 <body>
     <!-- Rest of the HTML remains the same -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">ModernShop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -302,7 +333,7 @@
                 </ul>
                 <div class="d-flex align-items-center">
                     <div class="position-relative me-3">
-                        <button class="btn btn-outline-dark" onclick="window.location.href='./cart.html'">
+                        <button class="btn btn-outline-light" onclick="window.location.href='./cart.html'">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="badge rounded-pill cart-badge" id="cartBadge">0</span>
                         </button>
